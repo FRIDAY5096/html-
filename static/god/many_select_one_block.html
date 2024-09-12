@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>单个多选</title>
+  <link rel="stylesheet" href="static/css/layui.css">
+  <style>
+
+
+    .block {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .block > div {
+        position: relative;
+        margin: 100px 60px 0 260px;
+        padding: 40px;
+        background: #fff;
+    }
+
+    .data_item input {
+        display: inline-block;
+        width: 15%;
+        vertical-align: middle;
+    }
+
+    .data_item textarea {
+        display: inline-block;
+        width: 79%;
+        vertical-align: middle;
+        height: 70px;
+        padding: 5px;
+    }
+
+    .data_item button {
+        display: inline-block;
+        width: 5%;
+        height: 70px;
+        vertical-align: middle;
+    }
+    .resources {
+        padding: 10px;
+        border: 1px solid #ebebeb;
+        display: none;
+    }
+
+    .resources.show {
+        display: block;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item" id="week">
+                <label class="layui-form-label ">单个多选</label>
+                <div class="layui-input-block" >
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" name="1" title="周一" lay-skin="tag">
+                        <input type="checkbox" name="2" title="周二" lay-skin="tag">
+                        <input type="checkbox" name="3" title="周三" lay-skin="tag">
+                        <input type="checkbox" name="4" title="周四" lay-skin="tag">
+                        <input type="checkbox" name="5" title="周五" lay-skin="tag">
+                        <input type="checkbox" name="6" title="周六" lay-skin="tag">
+                        <input type="checkbox" name="0" title="周日" lay-skin="tag">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="layui-btn js-print" lay-submit lay-filter="print">打印输入框内容</button>
+        </div>
+    </div>
+    <script>
+        function initHtml(){
+            layui.use(['form'], function() {
+                var form = layui.form;
+                form.on('submit(print)', function(data) {
+                    let week_data = [];
+                    $('#week input[type="checkbox"]:checked').each(function() {
+                        let title = $(this).attr('title');
+                        let number_id = Number($(this).attr('name'));
+                        week_data.push({
+                            title:title,
+                            number_id: number_id,
+                        })
+                    })
+                    console.log('选中的内容：', week_data);
+                })
+                formRender();
+            })
+        }
+        initHtml();
+
+        function layer_msg(msg, time=1000){
+            layer.msg(msg, {
+                time: time,
+                shade: 0.01,
+                shadeClose: true,
+            });
+        }
+
+        function formRender(){
+            layui.use(['form'], function () {
+                    var form = layui.form;
+                    form.render();
+                });
+        }
+    </script>
+</body>
+</html>

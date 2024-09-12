@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>多选多个</title>
+  <link rel="stylesheet" href="static/css/layui.css">
+  <style>
+
+
+    .block {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .block > div {
+        position: relative;
+        margin: 100px 60px 0 260px;
+        padding: 40px;
+        background: #fff;
+    }
+
+    .data_item input {
+        display: inline-block;
+        width: 15%;
+        vertical-align: middle;
+    }
+
+    .data_item textarea {
+        display: inline-block;
+        width: 79%;
+        vertical-align: middle;
+        height: 70px;
+        padding: 5px;
+    }
+
+    .data_item button {
+        display: inline-block;
+        width: 5%;
+        height: 70px;
+        vertical-align: middle;
+    }
+    .resources {
+        padding: 10px;
+        border: 1px solid #ebebeb;
+        display: none;
+    }
+
+    .resources.show {
+        display: block;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">默认每月</label>
+                <div class="layui-input-block resources show">
+                    <div class="layui-form-item">
+                        <div class="layui-form-item" style="background-color: #f2f2f2; padding: 10px;">
+                            <label class="layui-form-label" style="overflow: visible">月尾</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="enabled_month_last_day" lay-skin="switch" title="启用|关闭">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="every_month_lunar" style="background-color: #f2f2f2; padding: 10px;">
+                        <label class="layui-form-label" style="overflow: visible">农历</label>
+                        <div class="layui-input-block">
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="1" title="初一" lay-skin="tag">
+                                <input type="checkbox" name="2" title="初二" lay-skin="tag">
+                                <input type="checkbox" name="3" title="初三" lay-skin="tag">
+                                <input type="checkbox" name="4" title="初四" lay-skin="tag">
+                                <input type="checkbox" name="5" title="初五" lay-skin="tag">
+                                <input type="checkbox" name="6" title="初六" lay-skin="tag">
+                                <input type="checkbox" name="7" title="初七" lay-skin="tag">
+                                <input type="checkbox" name="8" title="初八" lay-skin="tag">
+                                <input type="checkbox" name="9" title="初九" lay-skin="tag">
+                                <input type="checkbox" name="10" title="初十" lay-skin="tag">
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="11" title="十一" lay-skin="tag">
+                                <input type="checkbox" name="12" title="十二" lay-skin="tag">
+                                <input type="checkbox" name="13" title="十三" lay-skin="tag">
+                                <input type="checkbox" name="14" title="十四" lay-skin="tag">
+                                <input type="checkbox" name="15" title="十五" lay-skin="tag">
+                                <input type="checkbox" name="16" title="十六" lay-skin="tag">
+                                <input type="checkbox" name="17" title="十七" lay-skin="tag">
+                                <input type="checkbox" name="18" title="十八" lay-skin="tag">
+                                <input type="checkbox" name="19" title="十九" lay-skin="tag">
+                                <input type="checkbox" name="20" title="二十" lay-skin="tag">
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="21" title="廿一" lay-skin="tag">
+                                <input type="checkbox" name="22" title="廿二" lay-skin="tag">
+                                <input type="checkbox" name="23" title="廿三" lay-skin="tag">
+                                <input type="checkbox" name="24" title="廿四" lay-skin="tag">
+                                <input type="checkbox" name="25" title="廿五" lay-skin="tag">
+                                <input type="checkbox" name="26" title="廿六" lay-skin="tag">
+                                <input type="checkbox" name="27" title="廿七" lay-skin="tag">
+                                <input type="checkbox" name="28" title="廿八" lay-skin="tag">
+                                <input type="checkbox" name="29" title="廿九" lay-skin="tag">
+                                <input type="checkbox" name="30" title="三十" lay-skin="tag">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="every_month_solar" style="background-color: #f2f2f2; padding: 10px;">
+                        <label class="layui-form-label" style="overflow: visible">阳历</label>
+                        <div class="layui-input-block">
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="1" title="01" lay-skin="tag">
+                                <input type="checkbox" name="2" title="02" lay-skin="tag">
+                                <input type="checkbox" name="3" title="03" lay-skin="tag">
+                                <input type="checkbox" name="4" title="04" lay-skin="tag">
+                                <input type="checkbox" name="5" title="05" lay-skin="tag">
+                                <input type="checkbox" name="6" title="06" lay-skin="tag">
+                                <input type="checkbox" name="7" title="07" lay-skin="tag">
+                                <input type="checkbox" name="8" title="08" lay-skin="tag">
+                                <input type="checkbox" name="9" title="09" lay-skin="tag">
+                                <input type="checkbox" name="10" title="10" lay-skin="tag">
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="11" title="11" lay-skin="tag">
+                                <input type="checkbox" name="12" title="12" lay-skin="tag">
+                                <input type="checkbox" name="13" title="13" lay-skin="tag">
+                                <input type="checkbox" name="14" title="14" lay-skin="tag">
+                                <input type="checkbox" name="15" title="15" lay-skin="tag">
+                                <input type="checkbox" name="16" title="16" lay-skin="tag">
+                                <input type="checkbox" name="17" title="17" lay-skin="tag">
+                                <input type="checkbox" name="18" title="18" lay-skin="tag">
+                                <input type="checkbox" name="19" title="19" lay-skin="tag">
+                                <input type="checkbox" name="20" title="20" lay-skin="tag">
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <input type="checkbox" name="21" title="21" lay-skin="tag">
+                                <input type="checkbox" name="22" title="22" lay-skin="tag">
+                                <input type="checkbox" name="23" title="23" lay-skin="tag">
+                                <input type="checkbox" name="24" title="24" lay-skin="tag">
+                                <input type="checkbox" name="25" title="25" lay-skin="tag">
+                                <input type="checkbox" name="26" title="26" lay-skin="tag">
+                                <input type="checkbox" name="27" title="27" lay-skin="tag">
+                                <input type="checkbox" name="28" title="28" lay-skin="tag">
+                                <input type="checkbox" name="29" title="29" lay-skin="tag">
+                                <input type="checkbox" name="30" title="30" lay-skin="tag">
+                                <input type="checkbox" name="31" title="31" lay-skin="tag">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="layui-btn js-print" lay-submit lay-filter="print">打印</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function initHtml(){
+            layui.use(['form'], function() {
+                var form = layui.form;
+                form.on('submit(print)', function() {
+                    let data = {
+                        lunar: [],
+                        solar: [],
+                    };
+                    for (let key in data) {
+                        $(`#every_month_${key} input[type="checkbox"]:checked`).each(function() {
+                            let title = $(this).attr('title')
+                            let number_id = $(this).attr('name');
+                            data[key].push({
+                                title: title,
+                                number_id:number_id,
+                            })
+                        })
+                    }
+                    data['enabled_month_last_day'] = $('.block input[name="enabled_month_last_day"]')[0].checked;
+                    console.log(data);
+                })
+                formRender();
+            })
+        }
+        initHtml();
+
+        function layer_msg(msg, time=1000){
+            layer.msg(msg, {
+                time: time,
+                shade: 0.01,
+                shadeClose: true,
+            });
+        }
+
+        function formRender(){
+            layui.use(['form'], function () {
+                    var form = layui.form;
+                    form.render();
+                });
+        }
+    </script>
+</body>
+</html>

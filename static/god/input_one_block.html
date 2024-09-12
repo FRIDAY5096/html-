@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>测试 - Layui</title>
+  <link rel="stylesheet" href="static/css/layui.css">
+</head>
+
+<body>
+    <div class="block">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">单个输入</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" autocomplete="off" placeholder="名称" class="layui-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">多个输入</label>
+            <div class="layui-input-block resources show" id="time" style="padding: 10px;">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择时间</label>
+                    <div class="layui-input-block">
+                        <div style="display: flex; align-items: center; margin-bottom: 10px">
+                            <div  style="margin-left: 10px; width: 80px;">
+                                <select lay-filter="time-hour-options" id="time-hour-options" lay-search="" >
+                                    <option value="">小时</option>
+                                </select>
+                            </div>
+                            <span style="margin-left: 5px; margin-right: 5px">：</span>
+                            <div  style=" margin-right: 10px; width: 80px;">
+                                <select lay-filter="time-minute-options" id="time-minute-options" lay-search="">
+                                    <option value="">分钟</option>
+                                </select>
+                            </div>
+                            <button type="button" class="layui-btn js-confirm"  style="margin-left: 10px; align-self: end" onclick="time_confirm()" >确认添加</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">时间内容</label>
+                    <div class="layui-input-block" id="time_container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="layui-btn js-print" lay-submit lay-filter="print">打印输入框内容</button>
+    </div>
+    <script>
+        function initHtml(){
+            layui.use(['form'], function() {
+                var form = layui.form;
+                form.on('submit(print)', function(data) {
+                    let value = $('.block input[name="name"]').val();
+                    console.log(value);
+                    layer_msg(value)
+                })
+            })
+        }
+        initHtml();
+
+        function layer_msg(msg, time=1000){
+            layer.msg(msg, {
+                time: time,
+                shade: 0.01,
+                shadeClose: true,
+            });
+        }
+    </script>
+</body>
+</html>

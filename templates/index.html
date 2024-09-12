@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台管理系统 - layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="/static/css/layui.css?t=1512984638033" media="all">
+    <style>
+        .demoTable {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">后台管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><div id="page-title" style="color: #eceff7"></div></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test" id="nav">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div id="body" style="padding: 15px;">
+        </div>
+    </div>
+
+</div>
+<script src="/static/js/jquery.min.js" charset="utf-8"></script>
+<script src="/static/js/layui.js?t=1512984638033" charset="utf-8"></script>
+<script type="text/template" id="item-template">
+    <li class="layui-nav-item js-title-list">
+        <a class="title" href="javascript:;">中文数据</a>
+        <dl class="layui-nav-child">
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">输入框</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/input_one_block.html?t=1">单个输入</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/input_many_block.html?t=1">多个输入</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/many_select_one_block.html?t=1">多选单个</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/many_select_many_block.html?t=1">多选多个</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_version.html?t=1">版本列表</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_express_entrance.html?t=1">快捷启动</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_x_panel.html?t=1">X面板</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_calendar.html?t=1">日历</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_sticker.html?t=1">贴纸</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_text.html?t=1">文案</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_health.html?t=1">健康</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_digital_clock.html?t=1">数字时钟</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_virtual_clock.html?t=1">虚拟时钟</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_originality.html?t=1">创意</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_count_down_date.html?t=1">倒数/纪念日</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_count_down_time.html?t=1">倒计时</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_weather.html?t=1">天气</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_photo.html?t=1">照片</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">积木素材库</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_category.html?t=1">分类排序</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_panel.html?t=1">面板</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_pointer.html?t=1">指针</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_dial_plate.html?t=1">表盘</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_sticker.html?t=1">贴纸</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_weather.html?t=1">天气</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/brick_material_dynamic.html?t=1">动态</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">自由组件</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_class_type.html?t=1">ClassType</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_category.html?t=1">组件分类</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_category_resource.html?t=1">分类内容</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_group.html?t=1">组件分组</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module.html?t=1">组件库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_recommend_banner.html?t=1">首页-推荐Banner</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_recommend_category.html?t=1">推荐-分类管理</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_recommend_category_resource.html?t=1">推荐-分类内容</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module_remind_time_config.html?t=1">组件提醒配置</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">组件复制数据检查</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module_pending_check.html?t=1">待检查</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module_checked_to_approve.html?t=1">已检查待通过</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module_to_be_modify.html?t=1">待修改</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/component_library_module_unapproved.html?t=1">未通过</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">智能组件</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/intelligent_component_category.html?t=1">分类排序</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/intelligent_component_category_resource.html?t=1">分类内容</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">创作圈</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_topic.html?t=1">话题</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_library_approved_user_module.html?t=1">正式模版库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_library_pending_approved_user_module.html?t=1">待审核组件模版库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_library_unapproved_user_module.html?t=1">未通过审核模版库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_pending_approved_comment.html?t=1">评论审核</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_circle_recommend_designer.html?t=1">推荐设计师管理</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_circle_help_wall_pending_approved_wish.html?t=1">帮帮墙-心愿贴审核</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/create_component_circle_help_wall_pending_approved_answer.html?t=1">帮帮墙-回答审核</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">公共素材库</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/public_picture_library.html?t=1">公共图片库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_avatar_library.html?t=1">公共头像库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_express_entrance_library.html?t=1">快捷启动库</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_cool_fact.html?t=1">每日冷知识</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_today_text.html?t=1">每日一言</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_text_english.html?t=1" >英语短句</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_text_poetry.html?t=1">诗词</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/public_text_famous_quotes.html?t=1">名言</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">功能背景</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/function_background_class_type.html?t=1">ClassType</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/function_background_library.html?t=1">背景库</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">数据统计</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/analysis_brick_use_data.html?t=1">积木使用数据统计</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/analysis_widget_use_data.html?t=1">组件使用数据统计</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/analysis_widget_user_data.html?t=1">组件用户活跃数据统计</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/analysis_desktop_widget_use_data.html?t=1">桌面组件活跃点击数据</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/analysis_desktop_brick_use_data.html?t=1">桌面积木活跃点击数据</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">支付数据</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/pay_order.html?t=1">订单记录</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/pay_user_membership.html?t=1">用户会员</a></dd>
+                </dl>
+            </dd>
+            <dd class="js-content-list">
+                <a class="" href="javascript:;">系统设置</a>
+                <dl class="layui-nav-child js-url-list">
+                    <dd><a href="javascript:;" data-url="/static/god/backend_operation_log.html?t=1">后台操作日志</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/update_set.html?t=1">更新配置</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/kv_config.html?t=1">参数管理</a></dd>
+                    <dd><a href="javascript:;" data-url="/static/god/official_account_manage.html?t=1">官方帐号管理</a></dd>
+                </dl>
+            </dd>
+        </dl>
+    </li>
+</script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form'], function () {
+        var element = layui.element;
+        form = layui.form;
+    });
+</script>
+<script>
+    function init() {
+        // var titles = ['中文数据后台_zh', '英文数据后台_en'];
+        var titles = ['中文数据后台_zh'];
+        $.each(titles, function (index, item) {
+            let [title, lang] = item.split('_');
+            var template = $('#item-template').html();
+            var $template = $(template);
+            if (lang === 'zh'){
+                $template.addClass('layui-nav-itemed');
+            }
+            $template.find('.title').text(title);
+            $template.find('.layui-nav-child dd a').each(function () {
+                var currentUrl = $(this).attr('data-url');
+                $(this).attr('data-url', currentUrl + `&lang=${lang}`);
+            });
+            $('#nav').append($template);
+        });
+        $('.js-title-list').unbind().click(function () {
+            $('.js-content-list').removeClass('layui-nav-itemed');
+            $('.js-title-list').removeClass('layui-nav-itemed');
+            $(this).addClass('layui-nav-itemed');
+        });
+        $('.js-content-list').unbind().click(function () {
+            event.stopPropagation();
+            $('.js-content-list').removeClass('layui-nav-itemed');
+            $(this).addClass('layui-nav-itemed');
+        });
+        $('.js-url-list a').each(function () {
+            $(this).unbind().click(function () {
+                var url = $(this).data('url');
+                console.log(url);
+                if (url) {
+                    history.pushState(null, null, '/god?url=' + url.replace('?', '&'));
+                    $('#body').load(url + '&t=' + getRangeNum());
+                }
+            });
+        });
+
+        $('.layui-nav-tree a').click(function(e) {
+            var path = [];
+            path.push($(this).text().trim());
+            $(this).parents('dl').prev('a').each(function() {
+                path.unshift($(this).text().trim());
+            });
+            $('#page-title').text(path.join(' - '));
+        });
+    }
+    init();
+    function unixtime2str(timestamp) {
+        // 将时间戳转换为日期时间格式并输出
+        const date = new Date(timestamp * 1000);
+
+        // 构造所需的日期时间格式字符串
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        return formattedDate
+    }
+
+    function unixtime2YMDstr(timestamp) {
+        // 将时间戳转换为日期时间格式并输出
+        const date = new Date(timestamp * 1000);
+
+        // 构造所需的日期时间格式字符串
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate
+    }
+
+    function GetQueryString(name, replace) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var _ = replace ? decodeURIComponent(window.location.search).replace(/</g, '&').replace(/>/g, '&') : window.location.search;
+        var r = _.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    function loadUrl(url) {
+        history.pushState(null, null, '/god?url=' + url.replace(/\?/g, '<').replace(/&/g, '>'));
+        $('#body').load(url);
+    }
+
+
+    function getRangeNum() {
+//        return new Date().getSeconds()
+        return Math.random();
+    }
+
+
+    if (GetQueryString('url')) {
+        loadUrl(GetQueryString('url').replace(/</g, '?').replace(/>/g, '&'));
+    }
+
+
+    function show_msg(text) {
+        layer.open({
+            type: 1
+            , offset: 'auto'
+            , id: 'layerDemo'
+            , content: '<div style="padding: 20px 100px;">' + text + '</div>'
+            , btnAlign: 'c' //按钮居中
+            , shade: 0.3 //不显示遮罩
+        });
+    }
+    function previewImg(obj) {
+        var img = new Image();
+        img.src = obj.src;
+
+        var maxWidth = 1080;
+        var maxHeight = 400;
+        img.onload = function() {
+            var originWidth = img.width;
+            var originHeight = img.height;
+
+            var scaleWidth = maxWidth / originWidth;
+            var scaleHeight = maxHeight / originHeight;
+            var scale = Math.min(scaleWidth, scaleHeight);
+
+            // 检查图片是否超出设定的最大尺寸（宽或高）
+            if (scale < 1) {
+            var newWidth = originWidth * scale;
+            var newHeight = originHeight * scale;
+            } else {
+            var newWidth = originWidth * 1.5;
+            var newHeight = originHeight * 1.5;
+            }
+            var imgHtml = "<img src='" + obj.src + "' width='" + newWidth + "' height='" + newHeight + "' style='display: block;-webkit-user-select: none;margin: auto;max-width:100%; max-height:100%;background-color: #808080;transition: background-color 300ms;'/>"
+            layer.open({
+                type: 1,
+                offset: 'auto',
+                area: [newWidth + 'px', newHeight + 'px'],
+                title: false,
+                shadeClose: true,
+                content: imgHtml
+            });
+        };
+    }
+
+    function layer_msg(msg){
+        layer.msg(msg, {
+            time: 1000,
+            shade: 0.01,
+            shadeClose: true
+        });
+    }
+</script>
+<script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_30088308'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30088308' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
